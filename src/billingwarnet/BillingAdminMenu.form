@@ -25,7 +25,7 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrollPanel" pref="429" max="32767" attributes="0"/>
+              <Component id="scrollPanel" pref="445" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -49,7 +49,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="This is admin menu"/>
+        <Property name="text" type="java.lang.String" value="Active Clients"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="scrollPanel">

@@ -18,7 +18,7 @@ public class DataMember {
         data = new Member[MaxSize];
         for(int i = 0; i< MaxSize; i++)
         {
-            setData(i,"trolol","trolol",0);
+            setData(i,"trolol","trolol",60000);
         }
         n=0;
     }

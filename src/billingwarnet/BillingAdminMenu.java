@@ -32,7 +32,7 @@ public class BillingAdminMenu extends javax.swing.JPanel {
 
     public void setPanelGroup()
     {
-        System.out.println("aaaaa");
+        //System.out.println("aaaaa");
         BillingClientStatus Com1 = new BillingClientStatus();
         BillingClientStatus Com2 = new BillingClientStatus();
         BillingClientStatus Com3 = new BillingClientStatus();
@@ -88,7 +88,7 @@ public class BillingAdminMenu extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(600, 480));
 
-        jLabel1.setText("This is admin menu");
+        jLabel1.setText("Active Clients");
 
         javax.swing.GroupLayout innerPanelLayout = new javax.swing.GroupLayout(innerPanel);
         innerPanel.setLayout(innerPanelLayout);
@@ -111,7 +111,7 @@ public class BillingAdminMenu extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+                .addComponent(scrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
                 .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(

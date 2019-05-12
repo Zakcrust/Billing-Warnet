@@ -24,6 +24,7 @@ public class MainFrame extends JFrame {
     public static BillingAdminMenu adminMenu;
     public static BillingTransaction transaction;
     public static BillingClientStatus clientStatus;
+    public static ClientTimeStatus timeStatus;
     public static BillingLogin login;
     public static Admin admin;
     public static DataClient dataClient;
@@ -36,6 +37,7 @@ public class MainFrame extends JFrame {
         adminMenu.setPanelGroup();
         transaction = new BillingTransaction();
         clientStatus = new BillingClientStatus();
+        timeStatus = new ClientTimeStatus();
         login = new BillingLogin();
         admin = new Admin();
         dataClient = new DataClient();

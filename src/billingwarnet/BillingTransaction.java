@@ -18,8 +18,9 @@ public class BillingTransaction extends javax.swing.JPanel {
      */
     DataClient dataClient;
     DataMember dataMember;
-    String harga;
-    String waktu;
+    long harga;
+    String waktuText;
+    int time;
     public BillingTransaction() {
         initComponents();
         groupButton();
@@ -50,7 +51,47 @@ public class BillingTransaction extends javax.swing.JPanel {
     
     private void checkSelectedPacket()
     {
-    
+        if(jam1.isSelected())
+            {
+                harga =3000;
+                waktuText = "1 jam";
+                time = 3600;
+            }
+            else if(jam2.isSelected())
+            {
+                harga =2*3000;
+                waktuText = "2 Jam";
+                time = 2*3600;
+            }
+            else if(jam3.isSelected())
+            {
+                harga =3*3000;
+                waktuText = "3 Jam";
+                time = 3*3600;
+            }
+            else if(jam5.isSelected())
+            {
+                harga =5*3000;
+                waktuText = "5 Jam";
+                time = 5*3600;
+            }
+            else if(jam7.isSelected())
+            {
+                harga =7*3000;
+                waktuText = "7 jam";
+                time = 7*3600;
+            }
+            else if(paketMalam.isSelected())
+            {
+                harga =10*3000;
+                waktuText = "Paket Malam";
+                time = 10*3600;
+            }
+            else
+            {
+                 MainFrame.infoBox("Pilih salah satu paket", "Peringatan");
+            }
+            
     }
     
     private void confirmTransaction()
@@ -58,43 +99,17 @@ public class BillingTransaction extends javax.swing.JPanel {
         
         if(dataMember!=null)
         {
-            if(jam1.isSelected())
+            checkSelectedPacket();
+            if(dataMember.data[0].getSaldo() < harga)
             {
-                harga = "Rp. 3000";
-                waktu = "1 jam";
+                MainFrame.infoBox("Saldo anda tidak cukup","Peringatan");
+                return;
             }
-            else if(jam2.isSelected())
-            {
-                harga = "Rp. 6000";
-                waktu = "2 Jam";
-            }
-            else if(jam3.isSelected())
-            {
-                harga = "Rp. 9000";
-                waktu = "3 Jam";
-            }
-            else if(jam5.isSelected())
-            {
-                harga = "Rp. 15000";
-                waktu = "5 Jam";
-            }
-            else if(jam7.isSelected())
-            {
-                harga = "Rp. 20000";
-                waktu = "7 jam";
-            }
-            else if(paketMalam.isSelected())
-            {
-                harga = "Rp. 20000";
-                waktu = "Paket Malam";
-            }
-            else
-                 System.out.println("invalid");
-            
+            MainFrame.clientStatus.setDisplayedStatus(dataMember.data[0].getUser(),String.valueOf(harga), waktuText);
         }
         else
         {
-        
+            checkSelectedPacket();
         }
     }
     
@@ -145,6 +160,11 @@ public class BillingTransaction extends javax.swing.JPanel {
         personal.setText("Personal");
 
         confirmTransaction.setText("Konfirmasi");
+        confirmTransaction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmTransactionActionPerformed(evt);
+            }
+        });
 
         clientName.setText("ClientName");
 
@@ -221,6 +241,16 @@ public class BillingTransaction extends javax.swing.JPanel {
     private void jam3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jam3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jam3ActionPerformed
+
+    private void confirmTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmTransactionActionPerformed
+        confirmTransaction();
+        MainFrame.frame.add(MainFrame.adminMenu);
+        MainFrame.frame.add(MainFrame.timeStatus);
+        MainFrame.timeStatus.setTime(time);
+        MainFrame.transaction.setVisible(false);
+        MainFrame.adminMenu.setVisible(false);
+        
+    }//GEN-LAST:event_confirmTransactionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

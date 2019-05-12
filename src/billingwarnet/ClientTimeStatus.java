@@ -5,22 +5,26 @@
  */
 package billingwarnet;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author zak
  */
-public class clientTimeStatus extends javax.swing.JFrame {
+public class ClientTimeStatus extends javax.swing.JFrame {
 
     /**
      * Creates new form clientTimeStatus
      */
-    private int waktu;
-    public clientTimeStatus() {
+    private static int waktu;
+    public ClientTimeStatus() {
         initComponents();
+        
     }
 
     /**
@@ -32,11 +36,11 @@ public class clientTimeStatus extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        timeStatus = new javax.swing.JLabel();
+        timeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        timeStatus.setText("Waktu tersisa");
+        timeLabel.setText("Waktu tersisa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -44,13 +48,13 @@ public class clientTimeStatus extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(timeStatus)
+                .addComponent(timeLabel)
                 .addContainerGap(294, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(timeStatus)
+                .addComponent(timeLabel)
                 .addGap(0, 285, Short.MAX_VALUE))
         );
 
@@ -74,42 +78,77 @@ public class clientTimeStatus extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(clientTimeStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientTimeStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(clientTimeStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientTimeStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(clientTimeStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientTimeStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(clientTimeStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientTimeStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        //</editor-fold>
+        if(waktu<=0)
+        waktu=3600;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new clientTimeStatus().setVisible(true);
+            new ClientTimeStatus().setVisible(true);
+            
         });
-       
+       /*
+        try {
+            /*java.awt.EventQueue.invokeAndWait(() -> {
+                while(waktu>0)
+                {
+                    updateTimeStatus();
+                    System.out.println(setTimeStamp(waktu));
+                }
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            });
+            
+            /*
+            new Thread(() -> {
+            while(waktu>0)
+            {
+            updateTimeStatus();
+            System.out.println("lmao");
+            }
+            }).start();
+            
+        } catch (InterruptedException | InvocationTargetException ex) {
+            Logger.getLogger(ClientTimeStatus.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        while(waktu>0)
+            {
+            updateTimeStatus();
+            System.out.println(setTimeStamp(waktu));
+            }
     }
 
     
-    private void updateTimeStatus()
+    private static void updateTimeStatus()
     {
-        timeStatus.setText(setTimeStamp(waktu));
-        
+        timeLabel.setText(setTimeStamp(waktu));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ClientTimeStatus.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        waktu--;
     }
     
     public void setTime(int waktu)
     {
-        this.waktu = waktu;
+        ClientTimeStatus.waktu = waktu;
     }
     
-    private String setTimeStamp(int waktu)
+    private static String setTimeStamp(int waktu)
     {
         String temp = "";
-        temp = "" + (waktu/3600)+":"+(waktu%3600/60)+""+(waktu%60);
+        temp = "" + (waktu/3600)+":"+(waktu%3600/60)+":"+(waktu%60);
         return temp;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel timeStatus;
+    private static javax.swing.JLabel timeLabel;
     // End of variables declaration//GEN-END:variables
 }
