@@ -33,6 +33,7 @@ public class MainFrame extends JFrame {
         int maxMember = 100;
         mainMenu = new BillingMainMenu();
         adminMenu = new BillingAdminMenu();
+        adminMenu.setPanelGroup();
         transaction = new BillingTransaction();
         clientStatus = new BillingClientStatus();
         login = new BillingLogin();

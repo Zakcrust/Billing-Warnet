@@ -7,6 +7,11 @@ package billingwarnet;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -19,11 +24,12 @@ public class BillingAdminMenu extends javax.swing.JPanel {
      */
     public BillingAdminMenu() {
         initComponents();
-        //setPanelGroup();
+        
     }
 
     public void setPanelGroup()
     {
+        System.out.println("aaaaa");
         BillingClientStatus Com1 = new BillingClientStatus();
         BillingClientStatus Com2 = new BillingClientStatus();
         BillingClientStatus Com3 = new BillingClientStatus();
@@ -32,6 +38,9 @@ public class BillingAdminMenu extends javax.swing.JPanel {
         BillingClientStatus Com6 = new BillingClientStatus();
         BillingClientStatus Com7 = new BillingClientStatus();
         BillingClientStatus Com8 = new BillingClientStatus();
+        
+        
+      innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.LINE_AXIS));
         
         innerPanel.add(Com1);
         Com1.setLocation(150, 150);
@@ -59,8 +68,6 @@ public class BillingAdminMenu extends javax.swing.JPanel {
         Com7.setVisible(true);
         Com8.setVisible(true);
         
-        this.add(innerPanel);
-        
     }
     
     /**
@@ -77,6 +84,7 @@ public class BillingAdminMenu extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(600, 480));
 
+        innerPanel.setBackground(java.awt.SystemColor.controlDkShadow);
         innerPanel.setPreferredSize(new java.awt.Dimension(450, 400));
 
         javax.swing.GroupLayout innerPanelLayout = new javax.swing.GroupLayout(innerPanel);
@@ -99,21 +107,21 @@ public class BillingAdminMenu extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(3, 3, 3)
                 .addComponent(innerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(innerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jLabel1)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(innerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
