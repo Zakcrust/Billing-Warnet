@@ -5,6 +5,8 @@
  */
 package billingwarnet;
 
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.BoxLayout;
@@ -12,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneLayout;
 
 /**
  *
@@ -40,7 +43,7 @@ public class BillingAdminMenu extends javax.swing.JPanel {
         BillingClientStatus Com8 = new BillingClientStatus();
         
         
-      innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.LINE_AXIS));
+      innerPanel.setLayout( new GridLayout(0,3));
         
         innerPanel.add(Com1);
         Com1.setLocation(150, 150);
@@ -79,55 +82,55 @@ public class BillingAdminMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        innerPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        scrollPanel = new javax.swing.JScrollPane();
+        innerPanel = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(600, 480));
 
-        innerPanel.setBackground(java.awt.SystemColor.controlDkShadow);
-        innerPanel.setPreferredSize(new java.awt.Dimension(450, 400));
+        jLabel1.setText("This is admin menu");
 
         javax.swing.GroupLayout innerPanelLayout = new javax.swing.GroupLayout(innerPanel);
         innerPanel.setLayout(innerPanelLayout);
         innerPanelLayout.setHorizontalGroup(
             innerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 463, Short.MAX_VALUE)
         );
         innerPanelLayout.setVerticalGroup(
             innerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 454, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("This is admin menu");
+        scrollPanel.setViewportView(innerPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(3, 3, 3)
-                .addComponent(innerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPanel)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(innerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel innerPanel;
+    public javax.swing.JPanel innerPanel;
     private javax.swing.JLabel jLabel1;
+    public javax.swing.JScrollPane scrollPanel;
     // End of variables declaration//GEN-END:variables
 }
