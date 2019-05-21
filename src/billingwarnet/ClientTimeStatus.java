@@ -5,12 +5,9 @@
  */
 package billingwarnet;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 
 /**
  *
@@ -21,7 +18,7 @@ public class ClientTimeStatus extends javax.swing.JFrame {
     /**
      * Creates new form clientTimeStatus
      */
-    private static int waktu;
+    static int waktu;
     public ClientTimeStatus() {
         initComponents();
         
@@ -47,15 +44,12 @@ public class ClientTimeStatus extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(timeLabel)
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(timeLabel))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(timeLabel)
-                .addGap(0, 285, Short.MAX_VALUE))
+            .addComponent(timeLabel)
         );
 
         pack();
@@ -88,67 +82,16 @@ public class ClientTimeStatus extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        if(waktu<=0)
-        waktu=3600;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new ClientTimeStatus().setVisible(true);
-            
         });
-       /*
-        try {
-            /*java.awt.EventQueue.invokeAndWait(() -> {
-                while(waktu>0)
-                {
-                    updateTimeStatus();
-                    System.out.println(setTimeStamp(waktu));
-                }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            });
-            
-            /*
-            new Thread(() -> {
-            while(waktu>0)
-            {
-            updateTimeStatus();
-            System.out.println("lmao");
-            }
-            }).start();
-            
-        } catch (InterruptedException | InvocationTargetException ex) {
-            Logger.getLogger(ClientTimeStatus.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        while(waktu>0)
-            {
-            updateTimeStatus();
-            System.out.println(setTimeStamp(waktu));
-            }
+       
     }
 
     
-    private static void updateTimeStatus()
-    {
-        timeLabel.setText(setTimeStamp(waktu));
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ClientTimeStatus.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        waktu--;
-    }
     
-    public void setTime(int waktu)
-    {
-        ClientTimeStatus.waktu = waktu;
-    }
-    
-    private static String setTimeStamp(int waktu)
-    {
-        String temp = "";
-        temp = "" + (waktu/3600)+":"+(waktu%3600/60)+":"+(waktu%60);
-        return temp;
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JLabel timeLabel;
+    protected javax.swing.JLabel timeLabel;
     // End of variables declaration//GEN-END:variables
 }

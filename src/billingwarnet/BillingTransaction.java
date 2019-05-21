@@ -5,6 +5,8 @@
  */
 package billingwarnet;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 
 /**
@@ -18,6 +20,7 @@ public class BillingTransaction extends javax.swing.JPanel {
      */
     DataClient dataClient;
     DataMember dataMember;
+    ClientTimeStatus timeStatus;
     long harga;
     String waktuText;
     int time;
@@ -103,9 +106,9 @@ public class BillingTransaction extends javax.swing.JPanel {
             if(dataMember.data[0].getSaldo() < harga)
             {
                 MainFrame.infoBox("Saldo anda tidak cukup","Peringatan");
-                return;
             }
-            MainFrame.clientStatus.setDisplayedStatus(dataMember.data[0].getUser(),String.valueOf(harga), waktuText);
+            else 
+                MainFrame.clientStatus.setDisplayedStatus(dataMember.data[0].getUser(),String.valueOf(harga), waktuText);
         }
         else
         {
@@ -130,7 +133,6 @@ public class BillingTransaction extends javax.swing.JPanel {
         jam5 = new javax.swing.JRadioButton();
         jam7 = new javax.swing.JRadioButton();
         paketMalam = new javax.swing.JRadioButton();
-        personal = new javax.swing.JRadioButton();
         confirmTransaction = new javax.swing.JButton();
         clientName = new javax.swing.JLabel();
 
@@ -157,8 +159,6 @@ public class BillingTransaction extends javax.swing.JPanel {
 
         paketMalam.setText("Paket Malam");
 
-        personal.setText("Personal");
-
         confirmTransaction.setText("Konfirmasi");
         confirmTransaction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,22 +182,19 @@ public class BillingTransaction extends javax.swing.JPanel {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(clientName)
+                            .addComponent(jam1)
+                            .addComponent(jam2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(clientName)
-                                    .addComponent(jam1)
-                                    .addComponent(jam2))
+                                .addComponent(jam3)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jam3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jam7))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jam5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(paketMalam))))
-                            .addComponent(personal))))
+                                .addComponent(jam7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jam5)
+                                .addGap(18, 18, 18)
+                                .addComponent(paketMalam)))))
                 .addContainerGap(134, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -218,11 +215,9 @@ public class BillingTransaction extends javax.swing.JPanel {
                     .addComponent(jam2)
                     .addComponent(jam5)
                     .addComponent(paketMalam))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(personal)
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addComponent(confirmTransaction)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -235,7 +230,7 @@ public class BillingTransaction extends javax.swing.JPanel {
         group.add(jam5);
         group.add(jam7);
         group.add(paketMalam);
-        group.add(personal);
+        
     }
     
     private void jam3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jam3ActionPerformed
@@ -243,15 +238,64 @@ public class BillingTransaction extends javax.swing.JPanel {
     }//GEN-LAST:event_jam3ActionPerformed
 
     private void confirmTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmTransactionActionPerformed
+        timeStatus = new ClientTimeStatus();
         confirmTransaction();
         MainFrame.frame.add(MainFrame.adminMenu);
-        MainFrame.frame.add(MainFrame.timeStatus);
-        MainFrame.timeStatus.setTime(time);
+        //MainFrame.frame.add(MainFrame.timeStatus);
+        timeStatus.setVisible(true);
+        timeStatus.revalidate();
+        MainFrame.frame.setVisible(false);
+        MainFrame.frame.dispose();
+        callTimeUpdate(time);
+        
         MainFrame.transaction.setVisible(false);
         MainFrame.adminMenu.setVisible(false);
         
     }//GEN-LAST:event_confirmTransactionActionPerformed
 
+    
+    public void callTimeUpdate(int waktu)
+    {
+        while(waktu>0)
+            {        
+                updateTimeStatus(waktu);
+                try {
+                Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                Logger.getLogger(ClientTimeStatus.class.getName()).log(Level.SEVERE, null, ex);
+                }   
+                
+                waktu--;
+            }
+        MainFrame.infoBox("Waktu anda habis", "Peringatan");
+        }
+    
+    private void updateTimeStatus(int waktu)
+    {
+        String temp;
+        if(timeStatus.timeLabel!= null)
+        {
+        if(!timeStatus.timeLabel.isVisible())
+            timeStatus.timeLabel.setVisible(true);
+        temp = setTimeStamp(waktu);
+        timeStatus.timeLabel.setText(temp);
+        System.out.println(setTimeStamp(waktu));
+        //System.out.println(timeLabel);
+        }
+    }
+    
+    
+    private void setTime(int waktu)
+    {
+        ClientTimeStatus.waktu = waktu;
+    }
+    
+    private String setTimeStamp(int waktu)
+    {
+        String temp = "";
+        temp = "" + (waktu/3600)+":"+(waktu%3600/60)+":"+(waktu%60);
+        return temp;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JLabel clientName;
@@ -264,6 +308,5 @@ public class BillingTransaction extends javax.swing.JPanel {
     protected javax.swing.JRadioButton jam5;
     protected javax.swing.JRadioButton jam7;
     protected javax.swing.JRadioButton paketMalam;
-    protected javax.swing.JRadioButton personal;
     // End of variables declaration//GEN-END:variables
 }
